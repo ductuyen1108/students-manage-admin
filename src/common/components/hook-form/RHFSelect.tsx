@@ -29,7 +29,7 @@ export default function RHFSelect({ name, defaultValue, options, ...other }: Pro
           fullWidth
           error={!!error}
           {...other}
-          sx={{ zIndex: 0, }}
+          sx={{ zIndex: 0, '&. MuiInputBase': { padding: "8.5px 14px !important"}}}
           defaultValue={defaultOption ? defaultOption.id : undefined }
         >
           {options.map((item) => (

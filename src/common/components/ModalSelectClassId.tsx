@@ -13,6 +13,8 @@ import useShowSnackbar from 'src/common/hooks/useMessage';
 import RHFSelectItem from './hook-form/RHFSelcectItem';
 import { useChangeClass } from '../hooks/useChangeClass';
 import useGetListClass from '../hooks/usegetListClass';
+import RHFSelectPagination from './hook-form/RHFSelectPagination';
+import { optionsBranchName } from 'src/statistical/attendance-percent/common/constant';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -25,7 +27,6 @@ const Transition = React.forwardRef(function Transition(
 
 interface Props {
   id: number;
-  branchName: string;
 }
 
 interface IChangeClass {
@@ -34,19 +35,21 @@ interface IChangeClass {
   branchName: string;
 }
 
-export default function ModalSelectClassId({ id, branchName }: Props) {
+interface ISubmitFilter {
+  classId: number;
+  branchName: { id: number; name: string };
+  id: number;
+}
+
+export default function ModalSelectClassId({ id }: Props) {
   const [open, setOpen] = React.useState(false);
   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
 
-  const {
-    dataClass,
-    fetchNextPageClass,
-    isFetchingNextPageClass,
-    isLoadingClass,
-  } = useGetListClass({
-    page: 1,
-    limit: 100,
-  });
+  const { dataClass, fetchNextPageClass, isFetchingNextPageClass, isLoadingClass } =
+    useGetListClass({
+      page: 1,
+      limit: 100,
+    });
   const listClass =
     dataClass?.pages
       ?.map((item) =>
@@ -58,7 +61,7 @@ export default function ModalSelectClassId({ id, branchName }: Props) {
         })
       )
       .flat() || [];
-    
+
   const { mutate } = useChangeClass({
     onSuccess: () => {
       showSuccessSnackbar('Chuyển lớp đoàn sinh thành công');
@@ -67,10 +70,10 @@ export default function ModalSelectClassId({ id, branchName }: Props) {
       showErrorSnackbar('Chuyển lớp đoàn sinh thất bại');
     },
   });
-  const methods = useForm<IChangeClass>({
+  const methods = useForm<ISubmitFilter>({
     defaultValues: {
       classId: undefined,
-      branchName: branchName,
+      branchName: undefined,
       id: id,
     },
   });
@@ -80,10 +83,10 @@ export default function ModalSelectClassId({ id, branchName }: Props) {
     formState: { errors },
   } = methods;
 
-  const onSubmit = async (data: { classId: number }) => {
+  const onSubmit = async (data: ISubmitFilter) => {
     const editData: IChangeClass = {
       id: id,
-      branchName: branchName,
+      branchName: data.branchName.name,
       classId: data.classId,
     };
     console.log('editData', editData);
@@ -118,7 +121,16 @@ export default function ModalSelectClassId({ id, branchName }: Props) {
         <DialogTitle>Chọn lớp cần chuyển</DialogTitle>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Stack p={2}>
-            <RHFSelectItem name="classId" options={listClass} size='small'/>
+            <Stack spacing={2}>
+              <RHFSelectItem name="classId" options={listClass} size="small" />
+              <RHFSelectPagination
+                name="branchName"
+                options={optionsBranchName}
+                labelProp="name"
+                label="Tên ngành"
+                size='small'
+              />
+            </Stack>
             <DialogActions>
               <Button variant="outlined" onClick={handleClose}>
                 Hủy

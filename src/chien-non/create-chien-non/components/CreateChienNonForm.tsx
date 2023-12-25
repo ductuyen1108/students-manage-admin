@@ -23,6 +23,7 @@ import {
 } from 'src/address/hooks/useGetAddress';
 import RHFSelectPagination from 'src/common/components/hook-form/RHFSelectPagination';
 import RHFDatePicker from 'src/common/components/hook-form/RHFDatePicker';
+import { useGetListClass } from 'src/class/common/hooks/useGetListClass';
 
 function CreateChienNonForm() {
   const navigate = useNavigate();
@@ -51,6 +52,15 @@ function CreateChienNonForm() {
     },
   });
 
+  const { listClass } = useGetListClass({branchName: "CHIEN_NON"});
+
+  const listOptionsClass = listClass?.items.map(item => {
+    return {
+      id: item.id,
+      name: item.className
+    }
+  })
+
   const { dataProvinces } = useGetProvinces();
   const { dataDistrict } = useGetDistrictByProvinceId(watch<any>('provinceId')?.code);
   const { dataWard } = useGetWardByDistrictId(watch<any>('districtId')?.code);
@@ -65,6 +75,7 @@ function CreateChienNonForm() {
       gender: data.gender,
       provinceId: data.provinceId.code,
       districtId: data.districtId.code,
+      classId: data?.class?.id,
       wardId: data.wardId.code,
       family: [
         {
@@ -111,6 +122,14 @@ function CreateChienNonForm() {
                   defaultValue={"Nam"}
                   options={gender}
                 />
+                <RHFSelectPagination
+                  name="class"
+                  options={listOptionsClass || []}
+                  labelProp="name"
+                  label={'Tên lớp'}
+                  disableClear
+                  size="small"
+                />
                 <RHFTextField name="address" label={'Địa chỉ cụ thể'} size="small" />
               </Stack>
               <Stack direction={'row'} spacing={3}>
@@ -146,7 +165,7 @@ function CreateChienNonForm() {
             <Typography>Thông tin Bố</Typography>
             <Stack spacing={3}>
               <Stack direction={'row'} spacing={3}>
-                <RHFTextField name="fatherName" label={'Tên đoàn sinh'} size="small" />
+                <RHFTextField name="fatherName" label={'Tên bố'} size="small" />
                 <RHFTextField
                   name="fatherLastName"
                   label={'Họ và tên đệm'}
@@ -168,7 +187,7 @@ function CreateChienNonForm() {
             <Typography>Thông tin Mẹ</Typography>
             <Stack spacing={3}>
               <Stack direction={'row'} spacing={3}>
-                <RHFTextField name="motherName" label={'Tên đoàn sinh'} size="small" />
+                <RHFTextField name="motherName" label={'Tên mẹ'} size="small" />
                 <RHFTextField
                   name="motherLastName"
                   label={'Họ và tên đệm'}

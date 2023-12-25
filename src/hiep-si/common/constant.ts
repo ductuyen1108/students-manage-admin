@@ -5,6 +5,7 @@ export const HEAD_TABLE_PROPS = [
   { id: 'birthday', label: 'Ngày sinh', align: 'center' },
   { id: 'gender', label: 'Giới tính', align: 'center' },
   { id: 'age', label: 'Tuổi', align: 'center' },
+  { id: 'className', label: 'Tên lớp', align: 'center' },
   { id: 'status', label: 'Trạng thái', align: 'center' },
   { id: 'action', label: '', align: 'center' },
 ];

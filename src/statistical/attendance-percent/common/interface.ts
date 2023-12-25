@@ -6,6 +6,17 @@ export interface IParamsAttendancePercent {
   startDate?: string;
   endDate?: string;
   branch?: string;
-  page?: number;
-  limit?: number;
+}
+
+export interface InitialNewsState {
+  dataSearch: IParamsAttendancePercent;
+}
+
+export interface ISubmitFiler {
+  startDate: string;
+  endDate: string;
+  branch: {
+    id: number;
+    name: string;
+  };
 }

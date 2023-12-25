@@ -110,7 +110,7 @@ function ThieuNhiTable() {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title={'Chuyển lớp nhiều đoàn sinh'}>
-                  <ModalChangeListClass branchName='THIEU_NHI' ids={selectedIds}/>
+                  <ModalChangeListClass ids={selectedIds}/>
                 </Tooltip>
               </Stack>
             }

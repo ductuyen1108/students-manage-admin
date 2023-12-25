@@ -122,7 +122,7 @@ function ChienNonTable() {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title={'Chuyển lớp nhiều đoàn sinh'}>
-                  <ModalChangeListClass ids={selectedIds} branchName='CHIEN_NON' />
+                  <ModalChangeListClass ids={selectedIds} />
                 </Tooltip>
               </Stack>
             }

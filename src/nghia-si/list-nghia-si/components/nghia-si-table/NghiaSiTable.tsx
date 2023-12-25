@@ -110,7 +110,7 @@ function NghiaSiTable() {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title={'Chuyển lớp nhiều đoàn sinh'}>
-                  <ModalChangeListClass branchName='NGHIA_SI' ids={selectedIds}/>
+                  <ModalChangeListClass ids={selectedIds}/>
                 </Tooltip>
               </Stack>
             }

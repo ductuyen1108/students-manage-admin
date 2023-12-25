@@ -21,7 +21,7 @@ export default function ChienNonTableRow({
   onEditRow,
   onDetailRow,
 }: IPropTableRow) {
-  const { id, holyName, name, birthDate, gender, lastName, status } = row;
+  const { id, holyName, name, birthDate, gender, lastName, status, class: classData } = row;
   const [openMenu, setOpenMenuActions] = useState<HTMLElement | null>(null);
   const { showSuccessSnackbar, showErrorSnackbar } = useShowSnackbar();
   const { mutate } = useEditChienNonInActive({
@@ -70,6 +70,7 @@ export default function ChienNonTableRow({
       <TableCell align="center">{getBirthDate(birthDate)}</TableCell>
       <TableCell align="center">{getGenderLabel(gender)}</TableCell>
       <TableCell align="center">{getAge(birthDate)}</TableCell>
+      <TableCell align="center">{classData?.className ? classData?.className : "Chưa cập nhật"}</TableCell>
       <TableCell align="center">{getStudentStatuslabel(status)}</TableCell>
       <TableCell align="center">
         <TableMoreMenu
@@ -78,7 +79,7 @@ export default function ChienNonTableRow({
           onOpen={handleOpenMenu}
           actions={
             <>
-              <ModalSelectClassId id={id} branchName="CHIEN_NON" />
+              <ModalSelectClassId id={id} />
               <MenuItem
                 onClick={() => {
                   handleCloseMenu();

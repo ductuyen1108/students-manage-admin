@@ -23,6 +23,7 @@ import {
 } from 'src/address/hooks/useGetAddress';
 import RHFSelectPagination from 'src/common/components/hook-form/RHFSelectPagination';
 import RHFDatePicker from 'src/common/components/hook-form/RHFDatePicker';
+import { useGetListClass } from 'src/class/common/hooks/useGetListClass';
 
 function CreateThieuNhiForm() {
   const navigate = useNavigate();
@@ -49,6 +50,15 @@ function CreateThieuNhiForm() {
     },
   });
 
+  const { listClass } = useGetListClass({branchName: "THIEU_NHI"});
+
+  const listOptionsClass = listClass?.items.map(item => {
+    return {
+      id: item.id,
+      name: item.className
+    }
+  })
+
   const { dataProvinces } = useGetProvinces();
   const { dataDistrict } = useGetDistrictByProvinceId(watch<any>('provinceId')?.code);
   const { dataWard } = useGetWardByDistrictId(watch<any>('districtId')?.code);
@@ -61,6 +71,7 @@ function CreateThieuNhiForm() {
       address: data.address,
       birthDate: data.birthDate,
       gender: data.gender,
+      classId: data?.class?.id,
       provinceId: data.provinceId.code,
       districtId: data.districtId.code,
       wardId: data.wardId.code,
@@ -110,6 +121,14 @@ function CreateThieuNhiForm() {
                   defaultValue={"Nam"}
                   options={gender}
                 />
+                <RHFSelectPagination
+                  name="class"
+                  options={listOptionsClass || []}
+                  labelProp="name"
+                  label={'Tên lớp'}
+                  disableClear
+                  size="small"
+                />
                 <RHFTextField name="address" label={'Địa chỉ cụ thể'} size="small" />
               </Stack>
               <Stack direction={'row'} spacing={3}>
@@ -145,7 +164,7 @@ function CreateThieuNhiForm() {
             <Typography>Thông tin Bố</Typography>
             <Stack spacing={3}>
               <Stack direction={'row'} spacing={3}>
-                <RHFTextField name="fatherName" label={'Tên đoàn sinh'} size="small" />
+                <RHFTextField name="fatherName" label={'Tên bố'} size="small" />
                 <RHFTextField
                   name="fatherLastName"
                   label={'Họ và tên đệm'}
@@ -167,7 +186,7 @@ function CreateThieuNhiForm() {
             <Typography>Thông tin Mẹ</Typography>
             <Stack spacing={3}>
               <Stack direction={'row'} spacing={3}>
-                <RHFTextField name="motherName" label={'Tên đoàn sinh'} size="small" />
+                <RHFTextField name="motherName" label={'Tên mẹ'} size="small" />
                 <RHFTextField
                   name="motherLastName"
                   label={'Họ và tên đệm'}

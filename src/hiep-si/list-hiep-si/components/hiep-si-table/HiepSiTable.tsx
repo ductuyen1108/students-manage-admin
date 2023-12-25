@@ -121,7 +121,7 @@ function HiepSiTable() {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title={"Chuyển lớp nhiều đoàn sinh"}>
-                  <ModalChangeListClass branchName='HIEP_SI' ids={selectedIds} />
+                  <ModalChangeListClass ids={selectedIds} />
                 </Tooltip>
               </Stack>
             }

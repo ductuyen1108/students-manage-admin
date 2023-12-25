@@ -270,6 +270,10 @@ const navConfig = [
             title: 'Thống kê số lượng đoàn sinh',
             path: PATH_DASHBOARD.statistical.countStudent,
           },
+          {
+            title: 'Thống kê tỉ lệ đoàn sinh đi học',
+            path: PATH_DASHBOARD.statistical.attendancePercent,
+          },
         ],
       },
       {

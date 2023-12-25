@@ -35,6 +35,11 @@ export interface IGeneral {
   holyName: string;
   lastName: string;
   status: string;
+  class: {
+    id: number;
+    className: string;
+    branchName: string;
+  };
   family: IFamily[];
 }
 
@@ -117,6 +122,7 @@ export interface IDataForm {
   birthDate: string;
   gender: string;
   address: string;
+  classId: number;
   provinceId: string;
   wardId: string;
   districtId: string;
@@ -130,6 +136,7 @@ export interface ISubmitData {
   birthDate: string;
   gender: string;
   address: string;
+  class: { id: number; name: string };
   provinceId: IProvince;
   districtId: IDistrict;
   wardId: IWard;

@@ -19,6 +19,7 @@ import listClassReducer from 'src/class/list-class/slice';
 import listLesionReducer from 'src/lesson/list-lesson/slice';
 import listAttendanceReducer from 'src/attendance/list-attendance/slice';
 import litScoreReducer from 'src/score/list-score/slice';
+import listAttendancePercentReducer from 'src/statistical/attendance-percent/slice';
 
 // slices
 
@@ -48,6 +49,7 @@ const rootReducer = combineReducers({
   listLesion: listLesionReducer,
   listAttendance: listAttendanceReducer,
   listScore: litScoreReducer,
+  listAttendancePercent: listAttendancePercentReducer
 });
 
 export { rootPersistConfig, rootReducer };

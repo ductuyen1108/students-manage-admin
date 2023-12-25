@@ -16,7 +16,7 @@ export default function ThieuNhiTableRow({
   onEditRow,
   onDetailRow,
 }: IPropTableRow) {
-  const { id, holyName, name, birthDate, gender, lastName, status } = row;
+  const { id, holyName, name, birthDate, gender, lastName, status, class: classData } = row;
   const [openMenu, setOpenMenuActions] = useState<HTMLElement | null>(null);
   const { showSuccessSnackbar, showErrorSnackbar } = useShowSnackbar();
   const { mutate } = useEditThieuNhiInActive({
@@ -63,6 +63,7 @@ export default function ThieuNhiTableRow({
       <TableCell align="center">{getBirthDate(birthDate)}</TableCell>
       <TableCell align="center">{getGenderLabel(gender)}</TableCell>
       <TableCell align="center">{getAge(birthDate)}</TableCell>
+      <TableCell align="center">{classData?.className ? classData?.className : "Chưa cập nhật"}</TableCell>
       <TableCell align="center">{getStudentStatuslabel(status)}</TableCell>
       <TableCell align="center">
         <TableMoreMenu
@@ -71,7 +72,7 @@ export default function ThieuNhiTableRow({
           onOpen={handleOpenMenu}
           actions={
             <>
-              <ModalSelectClassId branchName='THIEU_NHI' id={id}/>
+              <ModalSelectClassId id={id}/>
               <MenuItem
                 onClick={() => {
                   handleCloseMenu();

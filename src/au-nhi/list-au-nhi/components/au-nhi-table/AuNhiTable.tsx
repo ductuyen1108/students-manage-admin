@@ -110,7 +110,7 @@ function AuNhiTable() {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title={'Chuyển lớp nhiều đoàn sinh'}>
-                  <ModalChangeListClass branchName='AU_NHI' ids={selectedIds} />
+                  <ModalChangeListClass ids={selectedIds} />
                 </Tooltip>
               </Stack>
             }

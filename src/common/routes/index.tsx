@@ -193,6 +193,7 @@ export default function Router() {
           path: PATH_DASHBOARD.statistical.root,
           children: [
             { path: PATH_DASHBOARD.statistical.countStudent, element: <CountStudentStatistical /> },
+            { path: PATH_DASHBOARD.statistical.attendancePercent, element: <AttendancePercentStatistical /> },
           ]
         },
       ],
@@ -309,3 +310,4 @@ const ImportFileList = Loadable(lazy(() => import('src/requestImport/index')));
 
 // Count Student Statistical
 const CountStudentStatistical = Loadable(lazy(() => import('src/statistical/count-student/index')));
+const AttendancePercentStatistical = Loadable(lazy(() => import('src/statistical/attendance-percent/index')));
