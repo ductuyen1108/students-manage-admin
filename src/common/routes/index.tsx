@@ -8,6 +8,7 @@ import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
 // guards
 import AuthGuard from '../guards/AuthGuard';
 import GuestGuard from '../guards/GuestGuard';
+import { RequestExportListContainer } from '../../request-export/request-export-list';
 // config
 // components
 import LoadingScreen from '../components/LoadingScreen';
@@ -148,6 +149,52 @@ export default function Router() {
             { path: PATH_DASHBOARD.thieuNhi.detail, element: <DetailThieuNhi /> },
           ]
         },
+        {
+          path: PATH_DASHBOARD.class.root,
+          children: [
+            { path: PATH_DASHBOARD.class.list, element: <ListClass /> },
+            { path: PATH_DASHBOARD.class.create, element: <CreateClass /> },
+            { path: PATH_DASHBOARD.class.edit, element: <EditClass /> },
+          ]
+        },
+        {
+          path: PATH_DASHBOARD.lesion.root,
+          children: [
+            { path: PATH_DASHBOARD.lesion.list, element: <ListLession /> },
+            { path: PATH_DASHBOARD.lesion.create, element: <CreateLession /> },
+            { path: PATH_DASHBOARD.lesion.edit, element: <EditLession /> },
+          ]
+        },
+        {
+          path: PATH_DASHBOARD.attendance.root,
+          children: [
+            { path: PATH_DASHBOARD.attendance.list, element: <ListAttendance /> },
+          ]
+        },
+        {
+          path: PATH_DASHBOARD.score.root,
+          children: [
+            { path: PATH_DASHBOARD.score.list, element: <ListScore /> },
+          ]
+        },
+        {
+          path: PATH_DASHBOARD.requestExport.root,
+          children: [
+            { path: PATH_DASHBOARD.requestExport.list, element: <RequestExportListContainer /> },
+          ]
+        },
+        {
+          path: PATH_DASHBOARD.requestImport.root,
+          children: [
+            { path: PATH_DASHBOARD.requestImport.list, element: <ImportFileList /> },
+          ]
+        },
+        {
+          path: PATH_DASHBOARD.statistical.root,
+          children: [
+            { path: PATH_DASHBOARD.statistical.countStudent, element: <CountStudentStatistical /> },
+          ]
+        },
       ],
     },
     // Main Routes
@@ -240,3 +287,25 @@ const DetailNghiaSi = Loadable(lazy(() => import('src/nghia-si/details/index')))
 const ListThieuNhi = Loadable(lazy(() => import('src/thieu-nhi/list-thieu-nhi/index')));
 const CreateThieuNhi = Loadable(lazy(() => import('src/thieu-nhi/create-thieu-nhi/index')));
 const DetailThieuNhi = Loadable(lazy(() => import('src/thieu-nhi/details/index')));
+
+// Class
+const ListClass = Loadable(lazy(() => import('src/class/list-class/index')));
+const CreateClass = Loadable(lazy(() => import('src/class/create-class/index')));
+const EditClass = Loadable(lazy(() => import('src/class/edit-class/index')));
+
+// Lession
+const ListLession  = Loadable(lazy(() => import('src/lesson/list-lesson/index')));
+const CreateLession  = Loadable(lazy(() => import('src/lesson/create-lesson/index')));
+const EditLession = Loadable(lazy(() => import('src/lesson/edit-lesson/index')));
+
+// Attendance
+const ListAttendance = Loadable(lazy(() => import('src/attendance/list-attendance/index')));
+
+// Score
+const ListScore = Loadable(lazy(() => import('src/score/list-score/index')));
+
+// Request Import
+const ImportFileList = Loadable(lazy(() => import('src/requestImport/index')));
+
+// Count Student Statistical
+const CountStudentStatistical = Loadable(lazy(() => import('src/statistical/count-student/index')));

@@ -108,7 +108,6 @@ function CreateChienNonForm() {
                 <RHFSelect
                   name="gender"
                   label="Giới tính"
-                  size="small"
                   defaultValue={"Nam"}
                   options={gender}
                 />

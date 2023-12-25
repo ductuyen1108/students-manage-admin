@@ -58,3 +58,9 @@ export const getBirthDate = (birthDate: string) => {
 
   return `${day}-${month}-${year}`;
 }
+
+export const formatDateString = (data: string) => {
+  const date = new Date(data);
+  const formattedDate = date.toLocaleString("vi-VN", { timeZone: "UTC" });
+  return formattedDate;
+}

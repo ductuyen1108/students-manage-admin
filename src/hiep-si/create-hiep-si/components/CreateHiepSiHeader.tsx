@@ -1,7 +1,6 @@
 import { Stack } from '@mui/material';
 import HeaderBreadcrumbs from '../../../common/components/HeaderBreadcrumbs';
 import { PATH_DASHBOARD } from '../../../common/routes/paths';
-import ImportButton from 'src/common/components/ImportButton';
 
 export default function CreateHiepSiHeader() {
   return (
@@ -13,7 +12,6 @@ export default function CreateHiepSiHeader() {
           { name: 'Thêm mới đoàn sinh Hiệp sĩ' },
         ]}
       />
-      <ImportButton />
     </Stack>
   );
 }

@@ -9,6 +9,16 @@ import listNewsSubjectReducer from 'src/subject/list-subject/slice';
 import listNewsReducer from 'src/news/list-news/slice';
 import listContactReducer from 'src/contact-manage/list-contact/slice';
 import listChienNonReducer from 'src/chien-non/list-chien-non/slice';
+import listAuNhiReducer from 'src/au-nhi/list-au-nhi/slice';
+import listThieuNhiReducer from 'src/thieu-nhi/list-thieu-nhi/slice';
+import listHiepSiReducer from 'src/hiep-si/list-hiep-si/slice';
+import listNghiaSiReducer from 'src/nghia-si/list-nghia-si/slice';
+
+
+import listClassReducer from 'src/class/list-class/slice';
+import listLesionReducer from 'src/lesson/list-lesson/slice';
+import listAttendanceReducer from 'src/attendance/list-attendance/slice';
+import litScoreReducer from 'src/score/list-score/slice';
 
 // slices
 
@@ -30,6 +40,14 @@ const rootReducer = combineReducers({
   listNews: listNewsReducer,
   listContact: listContactReducer,
   listChienNon: listChienNonReducer,
+  listHiepSi: listHiepSiReducer,
+  listNghiaSi: listNghiaSiReducer,
+  listAuNhi: listAuNhiReducer,
+  listThieuNhi: listThieuNhiReducer,
+  listClass: listClassReducer,
+  listLesion: listLesionReducer,
+  listAttendance: listAttendanceReducer,
+  listScore: litScoreReducer,
 });
 
 export { rootPersistConfig, rootReducer };

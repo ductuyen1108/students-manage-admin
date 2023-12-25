@@ -3,7 +3,15 @@ import { useState } from 'react';
 import Iconify from '../../../../common/components/Iconify';
 import { TableMoreMenu } from '../../../../common/components/table';
 import { IPropTableRow } from 'src/common/@types/common.interface';
-import { getAge, getBirthDate, getGenderLabel, getStudentStatuslabel } from 'src/common/components/convert-enum';
+import {
+  getAge,
+  getBirthDate,
+  getGenderLabel,
+  getStudentStatuslabel,
+} from 'src/common/components/convert-enum';
+import ModalSelectClassId from 'src/common/components/ModalSelectClassId';
+import useShowSnackbar from 'src/common/hooks/useMessage';
+import { useEditAuNhiInActive } from 'src/au-nhi/edit-au-nhi/hooks/useEditAuNhi';
 
 export default function AuNhiTableRow({
   row,
@@ -15,6 +23,15 @@ export default function AuNhiTableRow({
 }: IPropTableRow) {
   const { id, holyName, name, birthDate, gender, lastName, status } = row;
   const [openMenu, setOpenMenuActions] = useState<HTMLElement | null>(null);
+  const { showSuccessSnackbar, showErrorSnackbar } = useShowSnackbar();
+  const { mutate } = useEditAuNhiInActive({
+    onSuccess: () => {
+      showSuccessSnackbar("Khóa tài khoản đoàn sinh thành công")
+    },
+    onError: () => {
+      showErrorSnackbar("Khóa tài khoản đoàn sinh thất bại")
+    }
+  })
 
   const handleOpenMenu = (category: React.MouseEvent<HTMLElement>) => {
     setOpenMenuActions(category.currentTarget);
@@ -47,7 +64,9 @@ export default function AuNhiTableRow({
       >
         {holyName}
       </TableCell>
-      <TableCell align="center">{lastName} {name}</TableCell>
+      <TableCell align="center">
+        {lastName} {name}
+      </TableCell>
       <TableCell align="center">{getBirthDate(birthDate)}</TableCell>
       <TableCell align="center">{getGenderLabel(gender)}</TableCell>
       <TableCell align="center">{getAge(birthDate)}</TableCell>
@@ -59,6 +78,16 @@ export default function AuNhiTableRow({
           onOpen={handleOpenMenu}
           actions={
             <>
+              <ModalSelectClassId id={id} branchName="AU_NHI" />
+              <MenuItem
+                onClick={() => {
+                  handleCloseMenu();
+                  mutate(id)
+                }}
+              >
+                <Iconify icon={'basil:user-block-outline'} />
+                Khóa tài khoản
+              </MenuItem>
               <MenuItem
                 onClick={() => {
                   onDeleteRow();
@@ -68,15 +97,6 @@ export default function AuNhiTableRow({
               >
                 <Iconify icon={'eva:trash-2-outline'} />
                 Xóa
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  onEditRow();
-                  handleCloseMenu();
-                }}
-              >
-                <Iconify icon={'eva:edit-fill'} />
-                Sửa
               </MenuItem>
             </>
           }

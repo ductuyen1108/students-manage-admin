@@ -65,9 +65,11 @@ export interface IFamily {
 }
 
 export interface IParams {
-  classId?: number[];
+  classId?: number;
   name?: string;
+  age?: number;
   holyName?: string;
+  branchName?: string;
   page?: number;
   limit?: number;
 }
@@ -88,7 +90,7 @@ export interface InitialState {
 }
 
 export interface ISubmitFilter {
-  class?: { id: number; className: string }[];
+  class?: number;
   name?: string;
   holyName?: string;
 }
@@ -178,3 +180,19 @@ export type ICallback = {
   onSuccess: VoidFunction;
   onError: VoidFunction;
 };
+
+export interface IDataExportFile {
+  name?: string;
+  holyName?: string;
+  classId?: number;
+  age?: number;
+  branchName?: string;
+  page?: number;
+  limit?: number;
+}
+
+export interface IDataChangeClass {
+  branchName: string;
+  classId: number;
+  ids: number[];
+}

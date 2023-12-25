@@ -3,6 +3,7 @@ import {
   FormControlLabel,
   IconButton,
   Paper,
+  Stack,
   Switch,
   Table,
   TableBody,
@@ -31,6 +32,9 @@ import TableSkeleton from '../SkeletonTable';
 import { Datas, IGeneral, IParams } from 'src/common/@types/common.interface'; 
 import { HEAD_TABLE_PROPS } from 'src/chien-non/common/constant';
 import ChienNonTableRow from './ChienNonTableRow';
+import { useChangeClass } from 'src/common/hooks/useChangeClass';
+import useShowSnackbar from 'src/common/hooks/useMessage';
+import ModalChangeListClass from 'src/common/components/ModalChangeListClass';
 
 function ChienNonTable() {
   const {
@@ -42,15 +46,24 @@ function ChienNonTable() {
     onChangePage,
     onChangeRowsPerPage,
   } = useTable();
+  const { showSuccessSnackbar, showErrorSnackbar } = useShowSnackbar();
   const navigate = useNavigate();
+  const {mutate} = useChangeClass({
+    onSuccess: () => {
+      showSuccessSnackbar("Chuyển lớp đoàn sinh thành công")
+    },
+    onError: () => {
+      showErrorSnackbar("Chuyển lớp đoàn sinh thất bại")
+    },
+  })
 
   const contentFilter = useSelector(dataFilter);
 
   const dataParams: IParams = {
-    classId:
-      contentFilter.classId?.length === 0 ? undefined : contentFilter.classId,
+    classId: contentFilter.classId,
     holyName: contentFilter.holyName,
     name: contentFilter.name,
+    branchName: contentFilter.branchName,
     page: page + 1,
     limit: rowsPerPage,
   };
@@ -81,7 +94,7 @@ function ChienNonTable() {
   };
 
   const handleEditChienNon = (idChienNon: number) => {
-    navigate(replacePathParams(PATH_DASHBOARD.chienNon.edit, { id: idChienNon }));
+    mutate({branchName: "CHIEN_NON", classId: contentFilter.classId || 0, ids: [idChienNon]})
   };
   const handleDetailChienNon = (idChienNon: number) => {
     navigate(replacePathParams(PATH_DASHBOARD.chienNon.detail, { id: idChienNon }));
@@ -102,11 +115,16 @@ function ChienNonTable() {
             rowCount={listChienNon?.length || 0}
             onSelectAllRows={handleCheckAll}
             actions={
-              <Tooltip title={'Xóa'}>
-                <IconButton color="primary" onClick={() => handleDeleteRows(selectedIds)}>
-                  <Iconify icon={'eva:trash-2-outline'} />
-                </IconButton>
-              </Tooltip>
+              <Stack direction={"row"} spacing={2} >
+                <Tooltip title={'Xóa'}>
+                  <IconButton color="primary" onClick={() => handleDeleteRows(selectedIds)}>
+                    <Iconify icon={'eva:trash-2-outline'} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={'Chuyển lớp nhiều đoàn sinh'}>
+                  <ModalChangeListClass ids={selectedIds} branchName='CHIEN_NON' />
+                </Tooltip>
+              </Stack>
             }
           />
         )}

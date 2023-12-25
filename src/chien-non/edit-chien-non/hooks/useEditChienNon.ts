@@ -8,7 +8,12 @@ export const useEditChienNonInActive = (callback: ICallback) => {
   return {
     ...useMutation(editChienNonInActive, {
       onSuccess: () => {
-        queryClient.invalidateQueries([QUERY_KEYS.LIST_CHIEN_NON]);
+        queryClient
+        .getQueryCache()
+        .findAll([QUERY_KEYS.LIST_CHIEN_NON])
+        .forEach(({ queryKey }) => {
+          queryClient.invalidateQueries(queryKey);
+        });
 
         callback.onSuccess && callback.onSuccess();
       },

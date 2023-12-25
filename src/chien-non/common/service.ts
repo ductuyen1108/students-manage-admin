@@ -33,3 +33,8 @@ export const getChienNonById = (id: number) => {
 
 export const editChienNonInActive = (id: number) =>
   axiosInstance.put(`${API_ADMIN_CHIEN_NON}/inactive/${id}`);
+
+
+export const createListChienNon = (data: {fileId: number}) => {
+  return axiosInstance.post(`${API_ADMIN_CHIEN_NON}/request-import`, data)
+}

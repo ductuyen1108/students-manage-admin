@@ -1,7 +1,7 @@
 import { EnumGender, StudentStatus } from 'src/common/@types/common.interface';
 
 export interface IChienNonParams {
-  classId?: number[];
+  classId?: number;
   name?: string;
   holyName?: string;
   gender?: EnumGender;
@@ -11,9 +11,10 @@ export interface IChienNonParams {
 }
 
 export interface IChienNonFilter {
-  classId?: number[];
+  classId?: number;
   name?: string;
   holyName?: string;
+  age?: number;
   gender?: EnumGender;
   status?: StudentStatus;
 }

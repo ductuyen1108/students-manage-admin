@@ -33,3 +33,7 @@ export const getThieuNhiById = (id: number) => {
 
 export const editThieuNhiInActive = (id: number) =>
   axiosInstance.put(`${API_ADMIN_THIEU_NHI}/inactive/${id}`);
+
+export const createListThieuNhi = (data: {fileId: number}) => {
+  return axiosInstance.post(`${API_ADMIN_THIEU_NHI}/request-import`, data)
+}

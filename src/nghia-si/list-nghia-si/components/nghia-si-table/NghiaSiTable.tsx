@@ -3,6 +3,7 @@ import {
   FormControlLabel,
   IconButton,
   Paper,
+  Stack,
   Switch,
   Table,
   TableBody,
@@ -31,6 +32,7 @@ import TableSkeleton from '../SkeletonTable';
 import { Datas, IGeneral, IParams } from 'src/common/@types/common.interface'; 
 import { HEAD_TABLE_PROPS } from 'src/nghia-si/common/constant';
 import NghiaSiTableRow from './NghiaSiTableRow';
+import ModalChangeListClass from 'src/common/components/ModalChangeListClass';
 
 function NghiaSiTable() {
   const {
@@ -47,8 +49,7 @@ function NghiaSiTable() {
   const contentFilter = useSelector(dataFilter);
 
   const dataParams: IParams = {
-    classId:
-      contentFilter.classId?.length === 0 ? undefined : contentFilter.classId,
+    classId: contentFilter.classId,
     holyName: contentFilter.holyName,
     name: contentFilter.name,
     page: page + 1,
@@ -102,11 +103,16 @@ function NghiaSiTable() {
             rowCount={listNghiaSi?.length || 0}
             onSelectAllRows={handleCheckAll}
             actions={
-              <Tooltip title={'Xóa'}>
-                <IconButton color="primary" onClick={() => handleDeleteRows(selectedIds)}>
-                  <Iconify icon={'eva:trash-2-outline'} />
-                </IconButton>
-              </Tooltip>
+              <Stack direction={"row"} spacing={2}>
+                <Tooltip title={'Xóa'}>
+                  <IconButton color="primary" onClick={() => handleDeleteRows(selectedIds)}>
+                    <Iconify icon={'eva:trash-2-outline'} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={'Chuyển lớp nhiều đoàn sinh'}>
+                  <ModalChangeListClass branchName='NGHIA_SI' ids={selectedIds}/>
+                </Tooltip>
+              </Stack>
             }
           />
         )}

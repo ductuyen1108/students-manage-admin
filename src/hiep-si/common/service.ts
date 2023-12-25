@@ -33,3 +33,7 @@ export const getHiepSiById = (id: number) => {
 
 export const editHiepSiInActive = (id: number) =>
   axiosInstance.put(`${API_ADMIN_HIEP_SI}/inactive/${id}`);
+
+export const createListHiepSi = (data: {fileId: number}) => {
+  return axiosInstance.post(`${API_ADMIN_HIEP_SI}/request-import`, data)
+}

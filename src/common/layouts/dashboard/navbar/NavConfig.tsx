@@ -64,6 +64,13 @@ const ICONS = {
   news: <Iconify icon="fluent:news-28-regular" />,
   voucher: <Iconify icon="mdi:voucher" />,
   advisory: <Iconify icon="mdi:heat-advisory" />,
+  class: <Iconify icon="healthicons:i-training-class" />,
+  lesion: <Iconify icon="streamline:class-lesson" />,
+  attendance: <Iconify icon="entypo:add-user" />,
+  score: <Iconify icon="grommet-icons:scorecard" />,
+  requestExport: <Iconify icon="ph:export-bold" />,
+  requestImport: <Iconify icon="bx:import" />,
+  statistical: <Iconify icon="solar:chart-bold-duotone" />,
 };
 
 const navConfig = [
@@ -177,6 +184,91 @@ const navConfig = [
           {
             title: 'Tạo mới tin tức',
             path: PATH_DASHBOARD.news.create,
+          },
+        ],
+      },
+      {
+        title: 'Quản lý lớp học',
+        path: PATH_DASHBOARD.class.root,
+        icon: ICONS.class,
+        children: [
+          {
+            title: 'Danh sách lớp học',
+            path: PATH_DASHBOARD.class.list,
+          },
+          {
+            title: 'Tạo mới lớp học',
+            path: PATH_DASHBOARD.class.create,
+          },
+        ],
+      },
+      {
+        title: 'Quản lý tiết học',
+        path: PATH_DASHBOARD.lesion.root,
+        icon: ICONS.lesion,
+        children: [
+          {
+            title: 'Danh sách tiết học',
+            path: PATH_DASHBOARD.lesion.list,
+          },
+          {
+            title: 'Tạo mới tiết học',
+            path: PATH_DASHBOARD.lesion.create,
+          },
+        ],
+      },
+      {
+        title: 'Quản lý điểm danh',
+        path: PATH_DASHBOARD.attendance.root,
+        icon: ICONS.attendance,
+        children: [
+          {
+            title: 'Danh sách điểm danh',
+            path: PATH_DASHBOARD.attendance.list,
+          },
+        ],
+      },
+      {
+        title: 'Quản lý điểm',
+        path: PATH_DASHBOARD.score.root,
+        icon: ICONS.score,
+        children: [
+          {
+            title: 'Danh sách điểm',
+            path: PATH_DASHBOARD.score.list,
+          },
+        ],
+      },
+      {
+        title: 'Quản lý file export',
+        path: PATH_DASHBOARD.requestExport.root,
+        icon: ICONS.requestExport,
+        children: [
+          {
+            title: 'Danh sách file export',
+            path: PATH_DASHBOARD.requestExport.list,
+          },
+        ],
+      },
+      {
+        title: 'Quản lý file import',
+        path: PATH_DASHBOARD.requestImport.root,
+        icon: ICONS.requestImport,
+        children: [
+          {
+            title: 'Danh sách file import',
+            path: PATH_DASHBOARD.requestImport.list,
+          },
+        ],
+      },
+      {
+        title: 'Quản lý thống kê',
+        path: PATH_DASHBOARD.statistical.root,
+        icon: ICONS.statistical,
+        children: [
+          {
+            title: 'Thống kê số lượng đoàn sinh',
+            path: PATH_DASHBOARD.statistical.countStudent,
           },
         ],
       },

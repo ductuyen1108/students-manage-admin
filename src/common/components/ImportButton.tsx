@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
-import { Button, ButtonProps } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { ReactNode } from 'react';
+import { ChangeEvent } from 'react';
+import { LoadingButton } from '@mui/lab';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -17,18 +17,21 @@ const VisuallyHiddenInput = styled('input')({
 
 interface Props {
   click?: () => VoidFunction;
+  isSubmitting: boolean;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => Promise<any>;
 };
 
-export default function ImportButton({ click }: Props) {
+export default function ImportButton({ click, handleChange, isSubmitting }: Props) {
   return (
-    <Button
+    <LoadingButton
+      loading={isSubmitting}
       component="label"
       variant="contained"
       startIcon={<CloudUploadIcon />}
       onClick={click}
     >
       Tải file lên
-      <VisuallyHiddenInput type="file" />
-    </Button>
+      <VisuallyHiddenInput type="file" accept='*/*' onChange={handleChange}/>
+    </LoadingButton>
   );
 }

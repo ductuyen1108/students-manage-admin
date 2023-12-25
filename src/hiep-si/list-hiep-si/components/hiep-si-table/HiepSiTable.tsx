@@ -3,6 +3,7 @@ import {
   FormControlLabel,
   IconButton,
   Paper,
+  Stack,
   Switch,
   Table,
   TableBody,
@@ -28,9 +29,12 @@ import { dispatch } from '../../../../common/redux/store';
 import ModalConfirmDelete from '../ModalConfirmDelete';
 import { PATH_DASHBOARD } from '../../../../common/routes/paths';
 import TableSkeleton from '../SkeletonTable';
-import { Datas, IGeneral, IParams } from 'src/common/@types/common.interface'; 
+import { IParams } from 'src/common/@types/common.interface'; 
 import { HEAD_TABLE_PROPS } from 'src/hiep-si/common/constant';
 import HiepSiTableRow from './HiepSiTableRow';
+import { useChangeClass } from 'src/common/hooks/useChangeClass';
+import useShowSnackbar from 'src/common/hooks/useMessage';
+import ModalChangeListClass from 'src/common/components/ModalChangeListClass';
 
 function HiepSiTable() {
   const {
@@ -43,12 +47,20 @@ function HiepSiTable() {
     onChangeRowsPerPage,
   } = useTable();
   const navigate = useNavigate();
+  const { showSuccessSnackbar, showErrorSnackbar } = useShowSnackbar();
+  const {mutate} = useChangeClass({
+    onSuccess: () => {
+      showSuccessSnackbar("Chuyển lớp đoàn sinh thành công")
+    },
+    onError: () => {
+      showErrorSnackbar("Chuyển lớp đoàn sinh thất bại")
+    },
+  })
 
   const contentFilter = useSelector(dataFilter);
 
   const dataParams: IParams = {
-    classId:
-      contentFilter.classId?.length === 0 ? undefined : contentFilter.classId,
+    classId: contentFilter.classId,
     holyName: contentFilter.holyName,
     name: contentFilter.name,
     page: page + 1,
@@ -81,7 +93,7 @@ function HiepSiTable() {
   };
 
   const handleEditHiepSi = (idHiepSi: number) => {
-    navigate(replacePathParams(PATH_DASHBOARD.hiepSi.edit, { id: idHiepSi }));
+    console.log("hello", idHiepSi);
   };
   const handleDetailHiepSi = (idHiepSi: number) => {
     navigate(replacePathParams(PATH_DASHBOARD.hiepSi.detail, { id: idHiepSi }));
@@ -102,11 +114,16 @@ function HiepSiTable() {
             rowCount={listHiepSi?.length || 0}
             onSelectAllRows={handleCheckAll}
             actions={
-              <Tooltip title={'Xóa'}>
-                <IconButton color="primary" onClick={() => handleDeleteRows(selectedIds)}>
-                  <Iconify icon={'eva:trash-2-outline'} />
-                </IconButton>
-              </Tooltip>
+              <Stack spacing={2} alignItems={"center"} direction={'row'}>
+                <Tooltip title={'Xóa'}>
+                  <IconButton color="primary" onClick={() => handleDeleteRows(selectedIds)}>
+                    <Iconify icon={'eva:trash-2-outline'} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={"Chuyển lớp nhiều đoàn sinh"}>
+                  <ModalChangeListClass branchName='HIEP_SI' ids={selectedIds} />
+                </Tooltip>
+              </Stack>
             }
           />
         )}

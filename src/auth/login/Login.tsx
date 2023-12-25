@@ -101,7 +101,7 @@ export default function Login() {
                   fontWeight={700}
                   color="primary"
                 >
-                  Bilisoftware
+                  Web quản lý học sinh
                 </Typography>
                 {/* <Typography
                   fontSize={'26px'}
@@ -147,7 +147,7 @@ export default function Login() {
                 >
                   <Typography variant="h4">Chào mừng đến</Typography>
                   <Typography variant="h4" gutterBottom color="primary">
-                    Bilisoftware
+                    Web quản lý học sinh
                   </Typography>
                 </Stack>
               </Stack>

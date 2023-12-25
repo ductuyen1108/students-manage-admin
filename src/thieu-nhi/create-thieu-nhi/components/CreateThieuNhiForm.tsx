@@ -23,7 +23,6 @@ import {
 } from 'src/address/hooks/useGetAddress';
 import RHFSelectPagination from 'src/common/components/hook-form/RHFSelectPagination';
 import RHFDatePicker from 'src/common/components/hook-form/RHFDatePicker';
-import ImportButton from 'src/common/components/ImportButton';
 
 function CreateThieuNhiForm() {
   const navigate = useNavigate();
@@ -196,7 +195,6 @@ function CreateThieuNhiForm() {
           >
             {t('create')}
           </LoadingButton>
-          <ImportButton />
           <Button
             startIcon={<Iconify icon="ph:x-circle" />}
             color="inherit"

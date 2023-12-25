@@ -33,3 +33,7 @@ export const getNghiaSiById = (id: number) => {
 
 export const editNghiaSiInActive = (id: number) =>
   axiosInstance.put(`${API_ADMIN_NGHIA_SI}/inactive/${id}`);
+
+export const createListNghiaSi = (data: {fileId: number}) => {
+  return axiosInstance.post(`${API_ADMIN_NGHIA_SI}/request-import`, data)
+}

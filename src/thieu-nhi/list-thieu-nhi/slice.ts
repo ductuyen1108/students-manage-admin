@@ -10,8 +10,8 @@ const initialChienNonState: InitialChienNonState = {
   showPopup: false,
 };
 
-export const listChienNonReducer = createSlice({
-  name: 'listChienNon',
+export const listThieuNhiReducer = createSlice({
+  name: 'listThieuNhi',
   initialState: initialChienNonState,
   reducers: {
     setDataFilter(state, action: PayloadAction<IChienNonFilter>) {
@@ -29,11 +29,11 @@ export const listChienNonReducer = createSlice({
   },
 });
 
-export const { setDataFilter, setValue, setIdDelete, setPopup } = listChienNonReducer.actions;
+export const { setDataFilter, setValue, setIdDelete, setPopup } = listThieuNhiReducer.actions;
 
-export const dataFilter = (state: RootState) => state.listChienNon.dataSearch;
-export const numberValue = (state: RootState) => state.listChienNon.value;
-export const listIdDelete = (state: RootState) => state.listChienNon.idDeleteChienNon;
-export const isPopup = (state: RootState) => state.listChienNon.showPopup;
+export const dataFilter = (state: RootState) => state.listThieuNhi.dataSearch;
+export const numberValue = (state: RootState) => state.listThieuNhi.value;
+export const listIdDelete = (state: RootState) => state.listThieuNhi.idDeleteChienNon;
+export const isPopup = (state: RootState) => state.listThieuNhi.showPopup;
 
-export default listChienNonReducer.reducer;
+export default listThieuNhiReducer.reducer;

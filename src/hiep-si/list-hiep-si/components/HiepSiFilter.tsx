@@ -12,6 +12,7 @@ import { defaultValueFilter } from 'src/hiep-si/common/constant';
 import useGetListClass from 'src/common/hooks/usegetListClass'; 
 import RHFSelectPaginationMultiple from 'src/common/components/hook-form/RHFSelectPaginationMutiple';
 import { ISubmitFilter } from 'src/common/@types/common.interface';
+import RHFSelectItem from 'src/common/components/hook-form/RHFSelcectItem';
 
 type Props = {
   onSetPage: (value: number) => void;
@@ -31,7 +32,7 @@ function HiepSiFilter({ onSetPage }: Props) {
 
   const onSubmit = (data: ISubmitFilter) => {
     const dataFilter: IChienNonFilter = {
-      classId: data.class?.map(item => item.id),
+      classId: data.class,
       holyName: data.holyName,
       name: data.name,
     };
@@ -41,7 +42,7 @@ function HiepSiFilter({ onSetPage }: Props) {
 
   const handleClickDelete = () => {
     reset({
-      class: [],
+      class: undefined,
       holyName: "",
       name: "",
     });
@@ -55,7 +56,7 @@ function HiepSiFilter({ onSetPage }: Props) {
     isLoadingClass,
   } = useGetListClass({
     page: 1,
-    limit: 10,
+    limit: 100,
   });
   const listClass =
     dataClass?.pages
@@ -63,7 +64,7 @@ function HiepSiFilter({ onSetPage }: Props) {
         item?.items?.map((item) => {
           return {
             id: item?.id,
-            name: item?.branchName,
+            className: item?.className,
           };
         })
       )
@@ -94,14 +95,10 @@ function HiepSiFilter({ onSetPage }: Props) {
               type="string"
               size="small"
             />
-            <RHFSelectPaginationMultiple
+            <RHFSelectItem 
               name="class"
               options={listClass}
-              labelProp="name"
               label={'Chọn lớp'}
-              listBoxScroll={handleScrollClass}
-              loadingScroll={isFetchingNextPageClass}
-              isLoading={isLoadingClass}
               size="small"
             />
           </Stack>

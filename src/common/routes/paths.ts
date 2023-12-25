@@ -87,6 +87,40 @@ export const PATH_DASHBOARD = {
     edit: path(ROOT_DASHBOARD, '/news/edit/:id'),
     detail: path(ROOT_DASHBOARD, '/news/detail/:id'),
   },
+  class: {
+    root: path(ROOT_DASHBOARD, '/class'),
+    list: path(ROOT_DASHBOARD, '/class/list'),
+    create: path(ROOT_DASHBOARD, '/class/create'),
+    edit: path(ROOT_DASHBOARD, '/class/edit/:id'),
+    detail: path(ROOT_DASHBOARD, '/class/detail/:id'),
+  },
+  lesion: {
+    root: path(ROOT_DASHBOARD, '/lession'),
+    list: path(ROOT_DASHBOARD, '/lession/list'),
+    create: path(ROOT_DASHBOARD, '/lession/create'),
+    edit: path(ROOT_DASHBOARD, '/lession/edit/:id'),
+    detail: path(ROOT_DASHBOARD, '/lession/detail/:id'),
+  },
+  attendance: {
+    root: path(ROOT_DASHBOARD, '/attendance'),
+    list: path(ROOT_DASHBOARD, '/attendance/list'),
+  },
+  score: {
+    root: path(ROOT_DASHBOARD, '/score'),
+    list: path(ROOT_DASHBOARD, '/score/list'),
+  },
+  requestExport: {
+    root: path(ROOT_DASHBOARD, '/request-export'),
+    list: path(ROOT_DASHBOARD, '/request-export/list'),
+  },
+  requestImport: {
+    root: path(ROOT_DASHBOARD, '/request-import'),
+    list: path(ROOT_DASHBOARD, '/request-import/list'),
+  },
+  statistical: {
+    root: path(ROOT_DASHBOARD, '/statistical'),
+    countStudent: path(ROOT_DASHBOARD, '/statistical/count-student'),
+  },
   contact: {
     root: path(ROOT_DASHBOARD, '/contact'),
     list: path(ROOT_DASHBOARD, '/contact/list'),

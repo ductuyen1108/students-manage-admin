@@ -3,16 +3,16 @@ import { RootState } from '../../common/redux/store';
 import { IChienNonFilter, InitialChienNonState } from '../common/interface';
 import { defaultValueFilter } from '../common/constant';
 
-const initialChienNonState: InitialChienNonState = {
+const initialAuNhiState: InitialChienNonState = {
   dataSearch: defaultValueFilter,
   value: 0,
   idDeleteChienNon: [],
   showPopup: false,
 };
 
-export const listChienNonReducer = createSlice({
-  name: 'listChienNon',
-  initialState: initialChienNonState,
+export const listAuNhiReducer = createSlice({
+  name: 'listAuNhi',
+  initialState: initialAuNhiState,
   reducers: {
     setDataFilter(state, action: PayloadAction<IChienNonFilter>) {
       state.dataSearch = action.payload;
@@ -29,11 +29,11 @@ export const listChienNonReducer = createSlice({
   },
 });
 
-export const { setDataFilter, setValue, setIdDelete, setPopup } = listChienNonReducer.actions;
+export const { setDataFilter, setValue, setIdDelete, setPopup } = listAuNhiReducer.actions;
 
-export const dataFilter = (state: RootState) => state.listChienNon.dataSearch;
-export const numberValue = (state: RootState) => state.listChienNon.value;
-export const listIdDelete = (state: RootState) => state.listChienNon.idDeleteChienNon;
-export const isPopup = (state: RootState) => state.listChienNon.showPopup;
+export const dataFilter = (state: RootState) => state.listAuNhi.dataSearch;
+export const numberValue = (state: RootState) => state.listAuNhi.value;
+export const listIdDelete = (state: RootState) => state.listAuNhi.idDeleteChienNon;
+export const isPopup = (state: RootState) => state.listAuNhi.showPopup;
 
-export default listChienNonReducer.reducer;
+export default listAuNhiReducer.reducer;
