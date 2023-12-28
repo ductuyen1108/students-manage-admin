@@ -31,17 +31,17 @@ function CreateClassForm() {
 
   const { listClass } = useGetListClass({});
 
-  const optionClass = listClass?.items?.map(item => {
+  const optionClass = listClass?.items?.map((item) => {
     return {
       id: item.id,
-      name: item.className
-    }
-  })
+      name: item.className,
+    };
+  });
 
   const { mutate } = useCreateLesion({
     onSuccess: () => {
       showSuccessSnackbar(t('news.new.newSuccess'));
-      navigate(PATH_DASHBOARD.class.list);
+      navigate(PATH_DASHBOARD.lesion.list);
     },
     onError: () => {
       showErrorSnackbar(t('news.new.newFail'));
@@ -54,7 +54,7 @@ function CreateClassForm() {
       startTime: data.startTime,
       content: data.content,
       endTime: data.endTime,
-      classId: data.classId.id
+      classId: data.classId.id,
     };
     mutate(dataCreate);
   };
@@ -65,20 +65,20 @@ function CreateClassForm() {
         <Paper elevation={3} sx={{ boxShadow: 10 }}>
           <Stack direction="column" spacing={3} padding={3}>
             <Stack direction={'row'} spacing={3}>
-                <RHFTextField name="title" label={'Tiêu đề'} size="small" />
-                <RHFTextField name="content" label={'Nội dung'} size="small" />
-                <RHFSelectPagination
-                  name="classId"
-                  labelProp="name"
-                  label="Tên lớp"
-                  options={optionClass || []}
-                  size="small"
-                  disableClear
-                />
+              <RHFTextField name="title" label={'Tiêu đề'} size="small" />
+              <RHFTextField name="content" label={'Nội dung'} size="small" />
+              <RHFSelectPagination
+                name="classId"
+                labelProp="name"
+                label="Tên lớp"
+                options={optionClass || []}
+                size="small"
+                disableClear
+              />
             </Stack>
             <Stack direction={'row'} spacing={3}>
-              <RHFDateTimePicker name='startTime' label={"Thời gian bắt đầu"} />
-              <RHFDateTimePicker name='endTime' label={"Thời gian kết thúc"} />
+              <RHFDateTimePicker name="startTime" label={'Thời gian bắt đầu'} />
+              <RHFDateTimePicker name="endTime" label={'Thời gian kết thúc'} />
             </Stack>
           </Stack>
         </Paper>
@@ -95,7 +95,7 @@ function CreateClassForm() {
             startIcon={<Iconify icon="ph:x-circle" />}
             color="inherit"
             variant="contained"
-            onClick={() => navigate(PATH_DASHBOARD.class.list)}
+            onClick={() => navigate(PATH_DASHBOARD.lesion.list)}
           >
             {t('cancel')}
           </Button>
