@@ -2,6 +2,8 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
@@ -11,7 +13,7 @@ import { useGetScoreById } from 'src/score/common/hooks/useGetScoreById';
 import { FormProvider, RHFTextField } from 'src/common/components/hook-form';
 import { useForm } from 'react-hook-form';
 import useDeepEffect from 'src/common/hooks/useDeepEffect';
-import { IDataCreateScore, ISubmitDataCreateScore } from 'src/score/common/interface';
+import { IDataCreateScore, IDataEditScore, ISubmitDataCreateScore, ISubmitDataEditScore } from 'src/score/common/interface';
 import useShowSnackbar from 'src/common/hooks/useMessage';
 import { useCreateScore } from 'src/score/common/hooks/useCreateScore';
 
@@ -32,16 +34,16 @@ interface Props {
   studentId: number;
 }
 
-export default function ModalEditScore({ id, name, lastName, classId, studentId }: Props) {
+export default function ModalCreateScore({ id, name, lastName, classId, studentId }: Props) {
   const [open, setOpen] = React.useState(false);
   const { useDeepCompareEffect } = useDeepEffect();
   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { mutate: mutateEdit } = useCreateScore({
+  const { mutate: mutateCreate } = useCreateScore({
     onSuccess: () => {
-      showSuccessSnackbar('Sửa điểm đoàn sinh thành công');
+      showSuccessSnackbar('Tạo điểm đoàn sinh thành công');
     },
     onError: () => {
-      showErrorSnackbar('Sửa điểm đoàn sinh thất bại');
+      showErrorSnackbar('Tạo điểm đoàn sinh thất bại');
     },
   });
   const methods = useForm<IDataCreateScore>({
@@ -72,14 +74,14 @@ export default function ModalEditScore({ id, name, lastName, classId, studentId 
   }, [scoreById]);
 
   const onSubmit = async (data: ISubmitDataCreateScore) => {
-    const editData: IDataCreateScore = {
+    const createData: IDataCreateScore = {
       classId: classId,
       finalScore: Number(data.finalScore),
       midScore: Number(data.midScore),
       studentId: studentId,
     };
-    console.log("editData", editData);
-    mutateEdit(editData);
+    console.log("createData", createData);
+    mutateCreate(createData);
   };
 
   const handleClickOpen = () => {
