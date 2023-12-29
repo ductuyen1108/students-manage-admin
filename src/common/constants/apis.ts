@@ -34,6 +34,7 @@ export const API_ADMIN_ATTENDANCE = '/admin/attendance/getListStudent';
 export const API_ADMIN_SCORE = '/admin/score';
 
 export const API_REQUEST_EXPORT = '/admin/manage-student/request-export';
+export const API_GET_LIST_FILE_EXPORT = '/admin/request-export';
 export const API_GET_LIST_FILE_IMPORT = '/admin/request-import';
 
 export const API_STATISTICAL = '/admin/statistical';

@@ -2,17 +2,17 @@ import { IDistrict, IProvince, IWard } from 'src/address/interface';
 
 export enum EnumGender {
   MALE = 'MALE',
-  FEMALE = 'FERMALE',
+  FEMALE = 'FEMALE'
 }
 
 export enum StudentStatus {
   ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
+  INACTIVE = 'INACTIVE'
 }
 
 export enum FamilyRole {
   MOM = 'MOM',
-  DAD = 'DAD',
+  DAD = 'DAD'
 }
 
 export interface FamilyObject {
@@ -56,7 +56,7 @@ export interface IAvatar {
 }
 
 export enum SupportFileType {
-  png = 'png',
+  png = 'png'
 }
 
 export interface IFamily {

@@ -18,7 +18,7 @@ export default function ScoreTableRow({
   const { t } = useTranslation();
   const { student, id, class: classData, finalScore, midScore } = row;
   const [openMenu, setOpenMenuActions] = useState<HTMLElement | null>(null);
-
+  console.log('row', row);
   const handleOpenMenu = (category: React.MouseEvent<HTMLElement>) => {
     setOpenMenuActions(category.currentTarget);
   };

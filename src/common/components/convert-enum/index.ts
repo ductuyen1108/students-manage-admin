@@ -1,6 +1,11 @@
-import { EnumGender, FamilyRole, StudentStatus } from 'src/common/@types/common.interface';
+import {
+  EnumGender,
+  FamilyRole,
+  StudentStatus
+} from 'src/common/@types/common.interface';
 
 export const getGenderLabel = (gender: string) => {
+  console.log('gender', gender);
   switch (gender) {
     case EnumGender.MALE:
       return 'Nam';
@@ -41,26 +46,27 @@ export const getAge = (date: string) => {
 
   if (
     currentDate.getMonth() < birthDate.getMonth() ||
-    (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
+    (currentDate.getMonth() === birthDate.getMonth() &&
+      currentDate.getDate() < birthDate.getDate())
   ) {
     age--;
   }
 
   return age;
-}
+};
 
 export const getBirthDate = (birthDate: string) => {
   const dateObject = new Date(birthDate);
-  
+
   const day = dateObject.getDate().toString().padStart(2, '0');
   const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
   const year = dateObject.getFullYear();
 
   return `${day}-${month}-${year}`;
-}
+};
 
 export const formatDateString = (data: string) => {
   const date = new Date(data);
-  const formattedDate = date.toLocaleString("vi-VN", { timeZone: "UTC" });
+  const formattedDate = date.toLocaleString('vi-VN', { timeZone: 'UTC' });
   return formattedDate;
-}
+};
