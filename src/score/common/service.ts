@@ -6,6 +6,7 @@ import {
   IResScore,
   IScore,
   IDeleteParams,
+  IDataExportFile,
 } from './interface';
 import { API_ADMIN_SCORE } from 'src/common/constants/apis';
 
@@ -30,3 +31,11 @@ export const deleteScore = (params: IDeleteParams) =>
   });
 
 export const deleteScoreByClassId = (id: number) => axiosInstance.delete(`${API_ADMIN_SCORE}/class/${id}`);
+
+export const createListScore = (data: {fileId: number}) => {
+  return axiosInstance.post(`${API_ADMIN_SCORE}/request-import`, data)
+}
+
+export const requestExportFileScore  = (data: IDataExportFile) => {
+  return axiosInstance.post(`${API_ADMIN_SCORE}/request-export`, data)
+}

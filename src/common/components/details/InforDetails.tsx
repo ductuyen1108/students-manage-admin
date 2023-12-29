@@ -28,7 +28,7 @@ const InforDetails = ({ detailInfor }: Props) => {
           <Box
             sx={{
               background: detailInfor?.avatar
-                ? detailInfor?.avatar
+                ? detailInfor?.avatar?.url
                 : 'url(https://th.bing.com/th/id/OIP.z39RH4OH53g22aaSCizbkAHaHa?rs=1&pid=ImgDetMain)',
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',

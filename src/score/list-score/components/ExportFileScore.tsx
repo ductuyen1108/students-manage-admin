@@ -1,16 +1,16 @@
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { LoadingButton } from '@mui/lab';
-import { useRequestExport } from '../hooks/useRequestExport';
-import { IDataExportFile } from '../@types/common.interface';
-import useShowSnackbar from '../hooks/useMessage';
+import { useRequestExportScore } from 'src/score/common/hooks/useRequestExportScore'; 
+import { IDataExportFile } from 'src/score/common/interface';
+import useShowSnackbar from 'src/common/hooks/useMessage'; 
 
 interface Props {
   prop: IDataExportFile;
 }
 
-export default function ExportButton({prop}: Props) {
+export default function ExportFileScore({prop}: Props) {
   const { showSuccessSnackbar, showErrorSnackbar } = useShowSnackbar();
-  const {mutate, isLoading} = useRequestExport({
+  const {mutate, isLoading} = useRequestExportScore({
     onSuccess: () => {
       showSuccessSnackbar("Xuất file thành công, truy cập danh sách file để xem thông tin")
     },
@@ -21,13 +21,7 @@ export default function ExportButton({prop}: Props) {
   
   const handleClick = () => {
     const dataExportRequest: IDataExportFile = {
-      age: prop.age,
-      branchName: prop.branchName,
-      classId: prop.classId,
-      holyName: prop.holyName,
-      limit: prop.limit,
-      name: prop.name,
-      page: prop.page,
+      classId: prop.classId
     }    
     mutate(dataExportRequest)
   }

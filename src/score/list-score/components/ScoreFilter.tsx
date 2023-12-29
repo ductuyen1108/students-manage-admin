@@ -1,24 +1,20 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import {  useForm } from 'react-hook-form';
-import { FormProvider, RHFTextField } from 'src/common/components/hook-form';
+import { FormProvider } from 'src/common/components/hook-form';
 import Iconify from 'src/common/components/Iconify';
 import { dispatch } from '../../../common/redux/store';
 import { setDataFilter } from '../slice';
-import { useTranslation } from 'react-i18next';
 import { IScoreFilter, ISubmitDataFilter } from 'src/score/common/interface';
 import { defaultValueFilter } from 'src/score/common/constant';
 import RHFSelectPagination from 'src/common/components/hook-form/RHFSelectPagination';
 import { useGetListClass } from 'src/class/common/hooks/useGetListClass';
-import { useState } from 'react';
 
 type Props = {
   onSetPage: (value: number) => void;
 };
 
 function ScoreFilter({ onSetPage }: Props) {
-  const { t } = useTranslation();
-  const [selectedClassId, setSelectedClassId] = useState(undefined);
   const methods = useForm<ISubmitDataFilter>({
     defaultValues: defaultValueFilter,
   });
@@ -72,26 +68,28 @@ function ScoreFilter({ onSetPage }: Props) {
               disableClear
             />
           </Stack>
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{ display: 'flex', justifyContent: 'flex-start' }}
-          >
-            <LoadingButton
-              variant="contained"
-              startIcon={<Iconify icon="humbleicons:search" />}
-              type="submit"
+          <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+            <Stack
+              direction="row"
+              spacing={3}
+              sx={{ display: 'flex', justifyContent: 'flex-start' }}
             >
-              {t('news.list.search')}
-            </LoadingButton>
-            <Button
-              variant="contained"
-              color="inherit"
-              startIcon={<Iconify icon="ic:baseline-clear" />}
-              onClick={handleClickDelete}
-            >
-              {t('news.list.clear')}
-            </Button>
+              <LoadingButton
+                variant="contained"
+                startIcon={<Iconify icon="humbleicons:search" />}
+                type="submit"
+              >
+                Tìm kiếm
+              </LoadingButton>
+              <Button
+                variant="contained"
+                color="inherit"
+                startIcon={<Iconify icon="ic:baseline-clear" />}
+                onClick={handleClickDelete}
+              >
+                Hủy
+              </Button>
+            </Stack>
           </Stack>
         </Stack>
       </FormProvider>

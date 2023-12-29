@@ -99,3 +99,7 @@ export interface IPropTableRow {
   onEditRow: VoidFunction;
   onDetailRow: VoidFunction;
 }
+
+export interface IDataExportFile {
+  classId?: number;
+}

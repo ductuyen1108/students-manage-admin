@@ -271,8 +271,16 @@ const navConfig = [
             path: PATH_DASHBOARD.statistical.countStudent,
           },
           {
+            title: 'Thống kê số lượng đoàn sinh theo lớp',
+            path: PATH_DASHBOARD.statistical.classAndCount,
+          },
+          {
             title: 'Thống kê tỉ lệ đoàn sinh đi học',
             path: PATH_DASHBOARD.statistical.attendancePercent,
+          },
+          {
+            title: 'Thống kê tỉ lệ đoàn sinh đi học muộn',
+            path: PATH_DASHBOARD.statistical.getStudentsWithLowAttendance,
           },
         ],
       },

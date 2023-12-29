@@ -122,6 +122,7 @@ export const PATH_DASHBOARD = {
     countStudent: path(ROOT_DASHBOARD, '/statistical/count-student'),
     attendancePercent: path(ROOT_DASHBOARD, '/statistical/attendance-percent'),
     getStudentsWithLowAttendance: path(ROOT_DASHBOARD, '/statistical/students-with-low-attendance'),
+    classAndCount: path(ROOT_DASHBOARD, '/statistical/class-and-count'),
   },
   contact: {
     root: path(ROOT_DASHBOARD, '/contact'),

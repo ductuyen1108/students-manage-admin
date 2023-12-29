@@ -13,6 +13,8 @@ import listAuNhiReducer from 'src/au-nhi/list-au-nhi/slice';
 import listThieuNhiReducer from 'src/thieu-nhi/list-thieu-nhi/slice';
 import listHiepSiReducer from 'src/hiep-si/list-hiep-si/slice';
 import listNghiaSiReducer from 'src/nghia-si/list-nghia-si/slice';
+import listStudentLowAttendanceReducer from 'src/statistical/students-with-low-attendance/slice';
+import listStatisticalReducer from 'src/statistical/count-student/common/slice';
 
 
 import listClassReducer from 'src/class/list-class/slice';
@@ -49,7 +51,9 @@ const rootReducer = combineReducers({
   listLesion: listLesionReducer,
   listAttendance: listAttendanceReducer,
   listScore: litScoreReducer,
-  listAttendancePercent: listAttendancePercentReducer
+  listAttendancePercent: listAttendancePercentReducer,
+  listStudentLowAttendance: listStudentLowAttendanceReducer,
+  listStatistical: listStatisticalReducer
 });
 
 export { rootPersistConfig, rootReducer };
