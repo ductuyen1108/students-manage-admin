@@ -30,6 +30,7 @@ export interface IGeneral {
   birthDate: string;
   gender: string;
   address: string;
+  fullAddress: string;
   email?: string;
   avatar?: IAvatar;
   holyName: string;

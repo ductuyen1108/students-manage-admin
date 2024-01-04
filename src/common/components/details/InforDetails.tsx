@@ -57,8 +57,8 @@ const InforDetails = ({ detailInfor }: Props) => {
               title="Giới tính"
               content={getGenderLabel(detailInfor?.gender || '')}
             />
-            <InforItem title="Địa chỉ" content={detailInfor?.address} />
-            <InforItem title="Email" content={detailInfor?.email} />
+            <InforItem title="Địa chỉ" content={detailInfor?.fullAddress} />
+            <InforItem title="Email" content={detailInfor?.family[0]?.email} />
           </Stack>
           <Stack direction={{ sm: 'row', xs: 'column' }} spacing={2}>
             {detailInfor?.family?.map((item) => (
